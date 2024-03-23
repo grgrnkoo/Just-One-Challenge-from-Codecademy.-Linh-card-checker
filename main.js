@@ -25,7 +25,9 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
+// function checking card number according to Linh algorithm
 const validateCred = cardNumberArray => {
+    // sum of even digits in card number, according to algorithm 
     const evenNumbersSum = array => {
         let sum = 0;
         for (let i = 0; i < 15; i += 2) {
@@ -39,7 +41,7 @@ const validateCred = cardNumberArray => {
         }
         return sum;
     }
-
+    // sum of odd digits in card number, according to algorithm  
     const oddNumbersSum = array => {
         let sum = 0;
         for (let i = 1; i < 16; i += 2) {
@@ -48,7 +50,7 @@ const validateCred = cardNumberArray => {
         return sum;
     }
     
-    
+    // checking if card's length valid
     if (cardNumberArray.length === 16) {
         return (evenNumbersSum(cardNumberArray) + oddNumbersSum(cardNumberArray)) % 10 === 0;
     } else {
@@ -56,6 +58,7 @@ const validateCred = cardNumberArray => {
     }
 }
 
+// function deletes duplicates in array
 const deleteDuplicates = array => {
     let newArray = array;
     
@@ -72,6 +75,7 @@ const deleteDuplicates = array => {
     return newArray;
 }
 
+// function creates array of cards, that did not pass Linh algorithm test
 const findInvalidCards = (arrayOfCards) => {
     let arrayOfInvalids = [];
     for(let i = 0; i < arrayOfCards.length; i++) {
@@ -82,8 +86,7 @@ const findInvalidCards = (arrayOfCards) => {
     return arrayOfInvalids;
 }
 
-// console.log(findInvalidCards(batch));
-
+// function that gathers all companies, that produced cards from input array based on a first digit
 const idCardCompanies = CardsArray => {
     let companies = [];
 
@@ -104,6 +107,7 @@ const idCardCompanies = CardsArray => {
     return deleteDuplicates(companies);
 }
 
+// function, that displays companies that produced invalid cards(main task of a challenge)
 const idInvalidCardCompanies = () => {
     return idCardCompanies(findInvalidCards(batch));
 }
